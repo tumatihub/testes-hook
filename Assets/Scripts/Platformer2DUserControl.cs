@@ -19,10 +19,19 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
-            if (!m_Jump)
+            if (!m_Jump && m_Character.state == PlatformerCharacter2D.States.MOVING )
             {
                 // Read the jump input in Update so button presses aren't missed.
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+            }
+
+            if (Input.GetMouseButton(0) && !m_Jump)
+            {
+                m_Character.state = PlatformerCharacter2D.States.SHOOTING_HOOK;
+            }
+            else
+            {
+                m_Character.state = PlatformerCharacter2D.States.MOVING;
             }
         }
 
@@ -30,19 +39,16 @@ namespace UnityStandardAssets._2D
         private void FixedUpdate()
         {
             // Read the inputs.
-            bool crouch = Input.GetKey(KeyCode.LeftControl);
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            if (Input.GetMouseButton(0) && !m_Jump)
+
+            if ( m_Character.state == PlatformerCharacter2D.States.MOVING)
             {
-                m_Character.shootHookButtonPressed = true;
-            }
-            else
-            {
-                m_Character.shootHookButtonPressed = false;
+                bool crouch = Input.GetKey(KeyCode.LeftControl);
+                float h = CrossPlatformInputManager.GetAxis("Horizontal");
                 // Pass all parameters to the character control script.
                 m_Character.Move(h, crouch, m_Jump);
+                m_Jump = false;
             }
-            m_Jump = false;
+            
         }
     }
 }

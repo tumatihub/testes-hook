@@ -19,11 +19,11 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-        private DistanceJoint2D hookJoint;
-        private LineRenderer ropeRender;
-        public bool shootHookButtonPressed = false;
-        public bool ropeOn = false;
-        public float ropeForce = 10.0f;
+
+        public enum States { SHOOTING_HOOK, RETRACTING_HOOK, MOVING }
+        public States state;
+
+
         private void Awake()
         {
             // Setting up references.
@@ -31,16 +31,16 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
-            hookJoint = GetComponent<DistanceJoint2D>();
-            ropeRender = GetComponent<LineRenderer>();
         }
 
 
         private void Update()
         {
-            if (ropeOn)
+            if ( state == States.SHOOTING_HOOK)
             {
-                updateRopeRender();
+                Debug.Log("Shooting!");
+                //Exec Shooting
+                state = States.MOVING;
             }
         }
 
@@ -60,64 +60,8 @@ namespace UnityStandardAssets._2D
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
-
-            // Update Hook
-
-            if (shootHookButtonPressed)
-            {
-                // Enable Hook and shoot
-                if (!ropeOn)
-                {
-                    // If starting to shoot
-                    var worldMousePosition = Camera.main.ScreenToWorldPoint(
-                        new Vector3(
-                            Input.mousePosition.x, 
-                            Input.mousePosition.y, 
-                            0.0f)
-                        );
-                    hookJoint.connectedAnchor = new Vector2(worldMousePosition.x, worldMousePosition.y); 
-                    //hookJoint.anchor = transform.position;
-                    hookJoint.distance = Vector2.Distance(hookJoint.connectedAnchor, transform.position);
-                    ropeRender.enabled = true;
-                    ropeOn = true;
-                    ropeRender.SetPosition(0, new Vector3(
-                            worldMousePosition.x, 
-                            worldMousePosition.y,
-                            0.0f
-                        )
-                    );
-                    
-                }
-                else
-                {
-
-                }
-            }
-            else
-            {
-                // Retract hook
-                if (ropeOn)
-                {
-                    if (!hookJoint.enabled)
-                    {
-                        hookJoint.enabled = true;
-                    }
-                    hookJoint.distance -= Time.deltaTime * ropeForce;
-                    if (hookJoint.distance <= 0.1)
-                    {
-                        ropeOn = false;
-                    }
-                }
-                else
-                {
-                    hookJoint.enabled = false;
-                    ropeRender.enabled = false;
-                }
-            }
-        }
-        private void updateRopeRender()
-        {
-            ropeRender.SetPosition(1, transform.position);
+            
+         
         }
 
         public void Move(float move, bool crouch, bool jump)
@@ -128,7 +72,6 @@ namespace UnityStandardAssets._2D
                 // If the character has a ceiling preventing them from standing up, keep them crouching
                 if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
                 {
-                    Debug.Log("Ceiling!!");
                     crouch = true;
                 }
             }
