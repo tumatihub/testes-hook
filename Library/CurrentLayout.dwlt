@@ -110,7 +110,7 @@ MonoBehaviour:
   m_MinSize: {x: 723, y: 442}
   m_MaxSize: {x: 12008, y: 8042}
   vertical: 0
-  controlID: 271
+  controlID: 2282
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 272
+  controlID: 2283
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_MinSize: {x: 244, y: 442}
   m_MaxSize: {x: 4004, y: 8042}
   vertical: 1
-  controlID: 249
+  controlID: 2340
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -314,7 +314,7 @@ MonoBehaviour:
     height: 250
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 0
-  m_Gizmos: 0
+  m_Gizmos: 1
   m_Stats: 0
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_TargetDisplay: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 12838
+  m_LastSelectedObjectID: 12864
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -494,14 +494,14 @@ MonoBehaviour:
     height: 343
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 5208.67685403164
+  lastFramingTime: 11444.318324576785
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.7005835, y: 3.5526443, z: -0.005859375}
+    m_Target: {x: 1.8690692, y: 1.8201212, z: 0.16796875}
     speed: 2
-    m_Value: {x: 4.7005835, y: 3.5526443, z: -0.005859375}
+    m_Value: {x: 1.8690692, y: 1.8201212, z: 0.16796875}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -525,22 +525,22 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     zGrid:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
+      m_Value: 0
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 9.782983
+    m_Target: 5.142297
     speed: 2
-    m_Value: 9.782983
+    m_Value: 5.142297
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
-  m_ShowGlobalGrid: 1
+  m_ShowGlobalGrid: 0
   m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
@@ -584,20 +584,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Sprites/Tiles
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites/Tiles
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\tumati\Documents\GameDev\Unity\Testes_hook
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 59}
-    m_SelectedIDs: d8300000
-    m_LastClickedID: 12504
-    m_ExpandedIDs: 00000000c4290000762d0000142e000080300000
+    scrollPos: {x: 0, y: 27}
+    m_SelectedIDs: 482b0000
+    m_LastClickedID: 11080
+    m_ExpandedIDs: 00000000c62900007c2d00001a2e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -625,7 +625,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 76290000
     m_LastClickedID: 10614
-    m_ExpandedIDs: 00000000c4290000762d0000142e000080300000
+    m_ExpandedIDs: 00000000c62900007c2d00001a2e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -650,9 +650,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 72010000
-    m_LastClickedInstanceID: 370
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 40320000
+    m_LastClickedInstanceID: 12864
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: e429000060300000da320000e6350000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -707,9 +707,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: f0fbffff0000000026320000
+    m_SelectedIDs: 40320000
+    m_LastClickedID: 12864
+    m_ExpandedIDs: f0fbffff0000000024320000403200005c320000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
