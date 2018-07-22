@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour {
     public float hookInertia;
     private LineRenderer hookLine;
     public float hookMaxDistance;
+    private bool pushed = false;
 
     // Use this for initialization
     void Start () {
@@ -65,9 +66,11 @@ public class PlayerController : MonoBehaviour {
                 if (isRetracting)
                 {
                     rb.isKinematic = false;
-                    if (!isGrounded)
+                    if (!isGrounded && !pushed)
                     {
+                        Debug.Log("(" + whereToShoot.x + "," + whereToShoot.y + ")");
                         rb.AddForce(whereToShoot * hookInertia * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                        pushed = true;
                     }
                     hook.Translate((transform.position - hook.transform.position).normalized * speedHookRetracting * Time.fixedDeltaTime, Space.World);
                 }
@@ -75,12 +78,15 @@ public class PlayerController : MonoBehaviour {
 
             if (isRetracted)
             {
+                Debug.Log("Retracted");
                 hook.position = transform.position;
                 hookLine.enabled = false;
                 hook.parent = transform;
                 isShooting = false;
                 isRetracting = false;
                 rb.isKinematic = false;
+                rb.velocity = new Vector2(0, 0);
+                pushed = false;
                 state = States.MOVING;
             }
 
