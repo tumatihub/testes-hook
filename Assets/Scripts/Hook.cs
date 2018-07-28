@@ -16,6 +16,7 @@ public class Hook : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
+            Debug.Log("Hook colidiu com Player!");
             playerScript.isRetracted = true;
         }
 

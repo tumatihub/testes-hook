@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 
     public States state = States.MOVING;
 
+    public Camera cam;
     private Rigidbody2D rb;
     public float speed;
     public float jumpForce;
@@ -144,9 +145,10 @@ public class PlayerController : MonoBehaviour {
                 isShooting = true;
                 isRetracted = false;
                 Vector2 mousePos = new Vector2(
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y
+                    cam.ScreenToWorldPoint(Input.mousePosition).x,
+                    cam.ScreenToWorldPoint(Input.mousePosition).y
                 );
+                Debug.Log("(" + mousePos.x + "," + mousePos.y + ")");
                 whereToShoot = (new Vector3(mousePos.x, mousePos.y, 0) - hook.position).normalized;
             }
         }
