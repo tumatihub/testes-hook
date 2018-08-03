@@ -1,46 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Hook : MonoBehaviour {
-
-    public GameObject player;
-    private PlayerController playerScript;
-
-    void Awake()
+namespace Gamekit2D
+{
+    public class Hook : MonoBehaviour
     {
-        playerScript = player.GetComponent<PlayerController>();
-    }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        public GameObject player;
+        private StateManager playerScript;
+
+        void Awake()
         {
-            Debug.Log("Hook colidiu com Player!");
-            playerScript.isRetracted = true;
+            playerScript = player.GetComponent<StateManager>();
         }
 
-        if (collision.gameObject.tag == "Hookable")
+        void OnTriggerEnter2D(Collider2D collision)
         {
-            playerScript.isHooked = true;
-        }
-        else if (collision.gameObject.tag != "Player")
-        {
-            playerScript.isHooked = false;
-            playerScript.isRetracting = true;
-        }
-    }
+            if (collision.gameObject.tag == "Player")
+            {
+                Debug.Log("Hook colidiu com Player!");
+                playerScript.isRetracted = true;
+            }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            playerScript.isRetracted = false;
+            if (collision.gameObject.tag == "Hookable")
+            {
+                playerScript.isHooked = true;
+            }
+            else if (collision.gameObject.tag != "Player")
+            {
+                playerScript.isHooked = false;
+                playerScript.isRetracting = true;
+            }
         }
 
-        if (collision.gameObject.tag == "Hookable")
+        void OnTriggerExit2D(Collider2D collision)
         {
-            playerScript.isHooked = false;
+            if (collision.gameObject.tag == "Player")
+            {
+                playerScript.isRetracted = false;
+            }
+
+            if (collision.gameObject.tag == "Hookable")
+            {
+                playerScript.isHooked = false;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     public enum States { MOVING, SHOOTING };
 
     public States state = States.MOVING;
-
+    
     public Camera cam;
     private Rigidbody2D rb;
     public float speed;
