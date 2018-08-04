@@ -55,7 +55,7 @@ namespace Gamekit2D
                 {
                     if (isHooked)
                     {
-                        rb.isKinematic = true;
+                        //rb.isKinematic = true;
                         transform.Translate(whereToShoot * speedHookPlayer * Time.fixedDeltaTime, Space.World);
                         //rb.AddForce(whereToShoot * hookInertia * Time.fixedDeltaTime, ForceMode2D.Impulse);
                     }
@@ -71,11 +71,11 @@ namespace Gamekit2D
 
                     if (isRetracting)
                     {
-                        rb.isKinematic = false;
+                        //rb.isKinematic = false;
                         if (!m_CharacterController2D.IsGrounded && !pushed)
                         {
                             Debug.Log("(" + whereToShoot.x + "," + whereToShoot.y + ")");
-                            rb.AddForce(whereToShoot * hookInertia * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                            rb.AddForce(whereToShoot * hookInertia * Time.fixedDeltaTime, ForceMode2D.Impulse);    
                             pushed = true;
                         }
                         hook.Translate((hookHolder.position - hook.transform.position).normalized * speedHookRetracting * Time.fixedDeltaTime, Space.World);
@@ -87,7 +87,7 @@ namespace Gamekit2D
                     Debug.Log("Retracted");
                     hook.position = hookHolder.position;
                     hookLine.enabled = false;
-                    hook.parent = transform;
+                    hook.parent = hookHolder;
                     isShooting = false;
                     isRetracting = false;
                     rb.isKinematic = false;
@@ -104,8 +104,7 @@ namespace Gamekit2D
 
         void Update()
         {
-            
-
+                      
             if (state == States.MOVING)
             {
                 m_PlayerCharacter.maxSpeed = 7;
