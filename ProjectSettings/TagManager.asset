@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Hookable
+  - Aggro
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - BossWeakPoint
   - Bullet
   - Ground
-  - 
+  - EnemyShadow
   - 
   - 
   - 
