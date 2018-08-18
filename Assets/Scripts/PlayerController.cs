@@ -34,6 +34,10 @@ public class PlayerController : MonoBehaviour {
     private LineRenderer hookLine;
     public float hookMaxDistance;
     private bool pushed = false;
+    private bool falling = false;
+
+    private float relSpeed;
+    float relSpeedMax;
 
     // Use this for initialization
     void Start () {
@@ -86,8 +90,11 @@ public class PlayerController : MonoBehaviour {
                 isShooting = false;
                 isRetracting = false;
                 rb.isKinematic = false;
-                rb.velocity = new Vector2(0, 0);
+                relSpeed = rb.velocity.x;
+                relSpeedMax = relSpeed;
+                //rb.velocity = new Vector2(0, 0);
                 pushed = false;
+                falling = true;
                 state = States.MOVING;
             }
 
@@ -100,6 +107,11 @@ public class PlayerController : MonoBehaviour {
     void Update()
     {
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        if (isGrounded)
+        {
+            relSpeed = 0;
+            falling = false;
+        }
 
         if (state == States.MOVING)
         {
@@ -129,7 +141,41 @@ public class PlayerController : MonoBehaviour {
             }
 
             moveInput = Input.GetAxisRaw("Horizontal");
-            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+
+            //var newVelocity = (moveInput * speed) + relSpeed;
+
+            //if (falling)
+            //{
+            //    if (relSpeed > 0) // direita
+            //    {
+            //        newVelocity = Mathf.Clamp(newVelocity, 0, relSpeedMax * 1.5f);
+            //    }
+
+            //    if (relSpeed < 0) // esquerda
+            //    {
+            //        newVelocity = Mathf.Clamp(newVelocity, relSpeedMax * 1.5f, 0);
+            //    }
+            //}
+            //rb.velocity = new Vector2(newVelocity, rb.velocity.y); ;
+
+            //relSpeed = newVelocity;
+
+            if (falling)
+            {
+                rb.velocity = new Vector2(relSpeed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2((moveInput * speed) + relSpeed, rb.velocity.y);
+            }
+
+
+            if (falling)
+            {
+                relSpeed += moveInput;
+                relSpeed = Mathf.Clamp(relSpeed, 0, relSpeedMax);
+            }
 
         }
 
