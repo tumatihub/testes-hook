@@ -34,10 +34,10 @@ public class PlayerController : MonoBehaviour {
     private LineRenderer hookLine;
     public float hookMaxDistance;
     private bool pushed = false;
-    private bool falling = false;
+    public bool falling = false;
 
-    private float relSpeed;
-    float relSpeedMax;
+    public float relSpeed;
+    public float relSpeedMax;
 
     // Use this for initialization
     void Start () {
@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
         if (isGrounded)
         {
@@ -173,8 +174,29 @@ public class PlayerController : MonoBehaviour {
 
             if (falling)
             {
-                relSpeed += moveInput;
-                relSpeed = Mathf.Clamp(relSpeed, 0, relSpeedMax);
+                //fiz isso para diminuir o relspeed mais lentamente e dar menos controle em pulo com o impulso
+                relSpeed += moveInput/10;
+                 if (relSpeed < 0)
+                {
+                    relSpeed = Mathf.Clamp(relSpeed, relSpeedMax, 0);
+                }
+                if (relSpeed > 0)
+                    relSpeed = Mathf.Clamp(relSpeed, 0, relSpeedMax);
+                if (Mathf.Abs(relSpeed) < Mathf.Abs(relSpeedMax))
+                {
+                    if (Mathf.Abs(relSpeed) > speed)
+                    {
+
+                        relSpeedMax = relSpeed;
+
+                    }
+                    //SE relspeed for menor que o speed, então volta a velocidade base e trata como se fosse uma queda comum
+                    else
+                    {
+                        falling = false;
+                        relSpeed = 0;
+                    }
+                }
             }
 
         }

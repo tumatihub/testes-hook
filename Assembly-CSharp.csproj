@@ -252,8 +252,13 @@
     <Compile Include="Assets\Scripts\Enemy\ShadowShark\ObstacleDetection.cs" />
     <Compile Include="Assets\Scripts\Enemy\ShadowShark\ShadowShark.cs" />
     <Compile Include="Assets\Scripts\Hook.cs" />
+    <Compile Include="Assets\Scripts\NewBehaviourScript1.cs" />
     <Compile Include="Assets\Scripts\Platformer2DUserControl.cs" />
     <Compile Include="Assets\Scripts\PlatformerCharacter2D.cs" />
+    <Compile Include="Assets\Scripts\Player\JumpingState.cs" />
+    <Compile Include="Assets\Scripts\Player\MovingState.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerStateController.cs" />
+    <Compile Include="Assets\Scripts\Player\State.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite-Animated.shader" />
