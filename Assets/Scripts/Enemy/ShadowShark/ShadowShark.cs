@@ -26,69 +26,68 @@ public class ShadowShark : MonoBehaviour {
 
     }
     private void FixedUpdate() {
-        if (state == States.PATROLLING)
+        switch (state)
         {
-            if (aggroScript.aggro == true)
-            {
-                state = States.FOLLOWING;
-                return;
-            }
-            //checa se tem algum objeto em frente ou abismo e acerta a direção. 
-            if (this.GetComponentInChildren<ObstacleDetection>().obstacle == true)
-            {
-                movingRight = !movingRight;
+            case States.PATROLLING:
+                if (aggroScript.aggro == true)
+                {
+                    state = States.FOLLOWING;
+                    break;
+                }
+                //checa se tem algum objeto em frente ou abismo e acerta a direção. 
+                if (this.GetComponentInChildren<ObstacleDetection>().obstacle == true)
+                {
+                    movingRight = !movingRight;
 
-            }
-            if (movingRight == false)
-            {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                
-            }
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
+                }
+                if (movingRight == false)
+                {
+                    transform.eulerAngles = new Vector3(0, -180, 0);
+                }
+                else
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 0);
 
-        else if(state == States.FOLLOWING)
-        {
+                }
+                transform.Translate(Vector2.right * speed * Time.deltaTime);
+                break;
 
-            if (player.position.x > transform.position.x -0.5f && player.position.x < transform.position.x +0.5f )
-            {
-                state = States.ATTACKING;
-                return;
-            }
+            case States.FOLLOWING:
+                if (player.position.x > transform.position.x - 0.5f && player.position.x < transform.position.x + 0.5f)
+                {
+                    state = States.ATTACKING;
+                    return;
+                }
                 if (!aggroScript.aggro)
-            {
-                state = States.PATROLLING;
-                return;
-            }
-            if (player.position.x > transform.position.x + 2)
-            {
-                movingRight = true;
-                transform.eulerAngles = new Vector3(0, 0, 0);
-            }
-            if (player.position.x < transform.position.x - 2)
-            {
-                movingRight = false;
-                transform.eulerAngles = new Vector3(0, -180, 0);
-            }
-            transform.Translate(Vector2.right * (speed*1.5f) * Time.deltaTime);
+                {
+                    state = States.PATROLLING;
+                    return;
+                }
+                if (player.position.x > transform.position.x + 2)
+                {
+                    movingRight = true;
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                }
+                if (player.position.x < transform.position.x - 2)
+                {
+                    movingRight = false;
+                    transform.eulerAngles = new Vector3(0, -180, 0);
+                }
+                transform.Translate(Vector2.right * (speed * 1.5f) * Time.deltaTime);
+                break;
 
-        }
-        else if (state == States.ATTACKING)
-        {
-            if (transform.position.y < height + 2)
-            {
-                GetComponent<Rigidbody2D>().velocity = Vector2.up * 2;
-            }
-            else
-            {
-                transform.position = new Vector2(transform.position.x, height);
-                state = States.PATROLLING;
-            }
-        }
+            case States.ATTACKING:
+                if (transform.position.y < height + 2)
+                {
+                    GetComponent<Rigidbody2D>().velocity = Vector2.up * 2;
+                }
+                else
+                {
+                    transform.position = new Vector2(transform.position.x, height);
+                    state = States.PATROLLING;
+                }
+                break;
+        }  
     }
    
 
