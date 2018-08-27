@@ -15,16 +15,20 @@ public class PlayerStateController : MonoBehaviour {
     public LayerMask whatIsGround;
     public float jumpForce;
     public float jumpTime;
+    public Transform hook;
+    public LineRenderer hookLine;
 
     // States
-    private State _state;
+    [SerializeField] private State _state;
     public State movingState;
     public State jumpingState;
+    public State shootingState;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         _state = movingState;
+        hookLine = GetComponent<LineRenderer>();
     }
 
     // Use this for initialization
@@ -34,6 +38,7 @@ public class PlayerStateController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
         _state.handle_input(this);
 	}
 
@@ -59,5 +64,10 @@ public class PlayerStateController : MonoBehaviour {
         _state.onExit(this);
         _state = nextState;
         _state.onEnter(this);
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(feetPos.transform.position, checkRadius);
     }
 }
