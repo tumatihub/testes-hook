@@ -253,6 +253,7 @@
     <Compile Include="Assets\Scripts\Enemy\ShadowShark\ObstacleDetection.cs" />
     <Compile Include="Assets\Scripts\Enemy\ShadowShark\ShadowShark.cs" />
     <Compile Include="Assets\Scripts\Hook.cs" />
+    <Compile Include="Assets\Scripts\LifeController.cs" />
     <Compile Include="Assets\Scripts\Platformer2DUserControl.cs" />
     <Compile Include="Assets\Scripts\PlatformerCharacter2D.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
