@@ -35,7 +35,8 @@ public class Hook : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerScript.isRetracted = false;
+            //playerScript.isRetracted = false;
+            playerScript.hasFired = true;
         }
 
         if (collision.gameObject.tag == "Hookable")

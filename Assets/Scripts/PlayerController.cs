@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     private LineRenderer hookLine;
     public float hookMaxDistance;
     private bool pushed = false;
+    public bool hasFired = false;
 
     // Use this for initialization
     void Start () {
@@ -85,6 +86,7 @@ public class PlayerController : MonoBehaviour {
                 hook.parent = transform;
                 isShooting = false;
                 isRetracting = false;
+                hasFired = false;
                 rb.isKinematic = false;
                 rb.velocity = new Vector2(0, 0);
                 pushed = false;
@@ -153,8 +155,9 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && hasFired)
         {
+            hasFired = false;
             // Recolher o hook
             isHooked = false;
             if (isShooting)
