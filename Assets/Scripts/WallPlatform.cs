@@ -21,4 +21,9 @@ public class WallPlatform : MonoBehaviour, IHookable {
         Debug.Log("Hook Action!");
 
     }
+
+    public string GetTag()
+    {
+        return gameObject.tag;
+    }
 }

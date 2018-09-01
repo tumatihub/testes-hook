@@ -8,6 +8,8 @@ TagManager:
   - Hookable
   - Aggro
   - Platform
+  - Shadow
+  - HookSupport
   layers:
   - Default
   - TransparentFX

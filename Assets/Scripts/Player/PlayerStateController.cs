@@ -19,14 +19,22 @@ public class PlayerStateController : MonoBehaviour {
     [HideInInspector] public LineRenderer hookLine;
     [HideInInspector] public Vector2 whereToShoot;
     public Camera cam;
+    public Animator animator;
+
+    float _lastChangeStateFrame;
     
-    //Hook
+    // Hook
     public float speedHook;
-    [HideInInspector] public bool hookIsRetracted;
-    [HideInInspector] public bool isHooked;
-    [HideInInspector] public bool isRetracting;
-    [HideInInspector] public bool isRetracted = true;
-    [HideInInspector] public IHookable hookedObject;
+    public bool isHooked;
+    public bool isRetracting;
+    public bool isRetracted = true;
+    public IHookable hookedObject;
+    public float hookMaxDistance;
+    public float speedHookPlayer;
+
+    // Shadow
+    public bool isInShadow;
+
 
     // States
     [SerializeField] private State _state;
@@ -34,12 +42,16 @@ public class PlayerStateController : MonoBehaviour {
     public State jumpingState;
     public State shootingState;
     public State hookedState;
+    public State hidingState;
+    public State retractingState;
+    public State pullingState;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         _state = movingState;
         hookLine = GetComponent<LineRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Use this for initialization
@@ -72,6 +84,12 @@ public class PlayerStateController : MonoBehaviour {
 
     public void ChangeState(State nextState)
     {
+        StartCoroutine(ChangeStateCoroutine(nextState));
+    }
+
+    private IEnumerator ChangeStateCoroutine(State nextState)
+    {
+        yield return new WaitForEndOfFrame();
         _state.onExit(this);
         _state = nextState;
         _state.onEnter(this);
@@ -89,5 +107,21 @@ public class PlayerStateController : MonoBehaviour {
     public void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(feetPos.transform.position, checkRadius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Shadow"))
+        {
+            isInShadow = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Shadow"))
+        {
+            isInShadow = false;
+        }
     }
 }

@@ -17,15 +17,15 @@ public class Hook : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Hook colidiu com Player!");
-            _controller.hookIsRetracted = true;
+            _controller.isRetracted = true;
         }
 
-        if (collision.gameObject.tag == "Hookable")
+        if (collision.gameObject.tag == "Hookable" || collision.gameObject.tag == "HookSupport")
         {
             _controller.isHooked = true;
             _controller.hookedObject = collision.gameObject.GetComponent<IHookable>();
         }
-        else if (collision.gameObject.tag != "Player"  && collision.gameObject.tag != "Aggro")
+        else if (collision.gameObject.tag != "Player"  && collision.gameObject.tag != "Aggro" && collision.gameObject.tag != "Shadow")
         {
             _controller.isHooked = false;
             _controller.isRetracting = true;
@@ -39,7 +39,7 @@ public class Hook : MonoBehaviour {
             _controller.isRetracted = false;
         }
 
-        if (collision.gameObject.tag == "Hookable")
+        if (collision.gameObject.tag == "Hookable" || collision.gameObject.tag == "HookSupport")
         {
             _controller.isHooked = false;
             _controller.hookedObject = null;
