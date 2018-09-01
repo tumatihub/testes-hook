@@ -20,14 +20,12 @@ public class MovingState : State
         // Decision to jump
         if (controller.isGrounded && Input.GetButton("Jump"))
         {
-            Debug.Log("Going Jump");
             controller.ChangeState(controller.jumpingState);
         }
 
         // Decision to shoot
         if (controller.isGrounded && Input.GetButton("Fire1"))
         {
-            Debug.Log("Going Shoot");
             controller.ChangeState(controller.shootingState);
         }
     }

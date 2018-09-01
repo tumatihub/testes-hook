@@ -5,11 +5,11 @@ using UnityEngine;
 public class Hook : MonoBehaviour {
 
     public GameObject player;
-    private PlayerController playerScript;
+    private PlayerStateController _controller;
 
-    void Awake()
+    void Start()
     {
-        playerScript = player.GetComponent<PlayerController>();
+        _controller = player.GetComponent<PlayerStateController>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -17,17 +17,18 @@ public class Hook : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Hook colidiu com Player!");
-            playerScript.isRetracted = true;
+            _controller.hookIsRetracted = true;
         }
 
         if (collision.gameObject.tag == "Hookable")
         {
-            playerScript.isHooked = true;
+            _controller.isHooked = true;
+            _controller.hookedObject = collision.gameObject.GetComponent<IHookable>();
         }
         else if (collision.gameObject.tag != "Player"  && collision.gameObject.tag != "Aggro")
         {
-            playerScript.isHooked = false;
-            playerScript.isRetracting = true;
+            _controller.isHooked = false;
+            _controller.isRetracting = true;
         }
     }
 
@@ -35,12 +36,13 @@ public class Hook : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerScript.isRetracted = false;
+            _controller.isRetracted = false;
         }
 
         if (collision.gameObject.tag == "Hookable")
         {
-            playerScript.isHooked = false;
+            _controller.isHooked = false;
+            _controller.hookedObject = null;
         }
     }
 }

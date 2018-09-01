@@ -13,24 +13,14 @@ public class JumpingState : State
 
     public override void handle_input(PlayerStateController controller)
     {
-        if (controller.isGrounded)
-        {
-            Debug.Log("Grounded: " + controller.isGrounded);
-        }
-        else
-        {
-            Debug.Log("NOT Grounded");
-        }
         controller.moveInput = Input.GetAxisRaw("Horizontal");
         controller.Flip();
         if (Input.GetButton("Jump"))
         {
-            Debug.Log("Holding Jump.");
             _isPressingJump = true;
         }
         else
         {
-            Debug.Log("Released Jump.");
             _canJump = false;
             _isPressingJump = false;
         }
@@ -49,7 +39,6 @@ public class JumpingState : State
 
     public override void update(PlayerStateController controller)
     {
-        Debug.Log("Jumping FixedUpdate.");
         if (_isPressingJump && _canJump)
         {
             _yv = controller.jumpForce;
@@ -91,7 +80,6 @@ public class JumpingState : State
 
     public override void onEnter(PlayerStateController controller)
     {
-        Debug.Log("Enter Jumping State.");
         controller.isGrounded = false;
         controller.rb.velocity = Vector2.up * controller.jumpForce;
         _isPressingJump = true;

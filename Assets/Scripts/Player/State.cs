@@ -8,7 +8,7 @@ public abstract class State : ScriptableObject
 
     public abstract void update(PlayerStateController controller);
 
-    public virtual void onExit(PlayerStateController controller) { Debug.Log("Exit Generic State."); }
+    public virtual void onExit(PlayerStateController controller) { }
 
-    public virtual void onEnter(PlayerStateController controller) { Debug.Log("Enter Generic State."); }
+    public virtual void onEnter(PlayerStateController controller) { }
 }
