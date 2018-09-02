@@ -27,10 +27,14 @@ public class HookedState : State
         controller.hookLine.SetPosition(1, controller.hook.transform.position);
 
         // Decision to PullingState
-        if (controller.hookedObject.GetTag() == "HookSupport")
+        if (controller.hookedObject != null)
         {
-            controller.ChangeState(controller.pullingState);
+            if (controller.hookedObject.GetTag() == "HookSupport")
+            {
+                controller.ChangeState(controller.pullingState);
+            }
         }
+        
 
         // Decision to RetractingState
         if (controller.isRetracting)

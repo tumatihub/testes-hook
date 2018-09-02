@@ -20,8 +20,7 @@ public class PlayerStateController : MonoBehaviour {
     [HideInInspector] public Vector2 whereToShoot;
     public Camera cam;
     public Animator animator;
-
-    float _lastChangeStateFrame;
+    public float fallingSpeed;
     
     // Hook
     public float speedHook;
@@ -31,6 +30,7 @@ public class PlayerStateController : MonoBehaviour {
     public IHookable hookedObject;
     public float hookMaxDistance;
     public float speedHookPlayer;
+    public float hookInertia;
 
     // Shadow
     public bool isInShadow;
@@ -45,6 +45,7 @@ public class PlayerStateController : MonoBehaviour {
     public State hidingState;
     public State retractingState;
     public State pullingState;
+    public State fallingState;
 
     private void Awake()
     {

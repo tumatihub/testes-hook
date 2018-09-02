@@ -431,7 +431,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4763125205162874, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.9891257
+      value: 1.0186822
       objectReference: {fileID: 0}
     - target: {fileID: 4763125205162874, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 2}
       propertyPath: m_LocalPosition.y
@@ -457,7 +457,7 @@ Prefab:
       objectReference: {fileID: 864907734}
     - target: {fileID: 4687200001476508, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.9891257
+      value: 1.0186822
       objectReference: {fileID: 0}
     - target: {fileID: 4687200001476508, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5954,12 +5954,14 @@ MonoBehaviour:
   whereToShoot: {x: 0, y: 0}
   cam: {fileID: 633654763}
   animator: {fileID: 0}
-  speedHook: 10
+  fallingSpeed: 4
+  speedHook: 20
   isHooked: 0
   isRetracting: 0
   isRetracted: 0
   hookMaxDistance: 10
   speedHookPlayer: 10
+  hookInertia: 150
   isInShadow: 0
   _state: {fileID: 0}
   movingState: {fileID: 11400000, guid: f7e130e161b584e4a9754d449e6ce572, type: 2}
@@ -5969,6 +5971,7 @@ MonoBehaviour:
   hidingState: {fileID: 11400000, guid: c0adee267101abb44aad167b01df8b4c, type: 2}
   retractingState: {fileID: 11400000, guid: 3b7ae60034fe71f4aabd9e18ba4a5544, type: 2}
   pullingState: {fileID: 11400000, guid: 6ff3319af9118154099e136acf02d235, type: 2}
+  fallingState: {fileID: 11400000, guid: efc5f9357ed36e346824e6e84f5bdfe6, type: 2}
 --- !u!212 &1916019131
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6029,7 +6032,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 8f79c120043afca43ba1de65917b6c4d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1

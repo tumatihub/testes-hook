@@ -19,10 +19,27 @@ public class PullingState : State
         controller.hookLine.SetPosition(1, controller.hook.transform.position);
         
 
-        // Decision to RetractingState
+        // Decision to FallingState
+
         if (controller.isRetracting)
         {
-            controller.ChangeState(controller.retractingState);
+            controller.rb.isKinematic = false;
+            // Push to hook
+            controller.rb.AddForce(
+                (controller.hook.position - controller.transform.position).normalized * controller.hookInertia * Time.deltaTime, 
+                ForceMode2D.Impulse
+            );
+            controller.ChangeState(controller.fallingState);
+        }
+
+        if (controller.isRetracted)
+        {
+            controller.rb.isKinematic = false;
+            controller.hookLine.enabled = false;
+            controller.hook.parent = controller.transform;
+            controller.isRetracting = false;
+            controller.hook.position = controller.transform.position;
+            controller.ChangeState(controller.fallingState);
         }
     }
 
