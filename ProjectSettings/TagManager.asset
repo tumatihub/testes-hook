@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - Shadow
   - HookSupport
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Bullet
   - Ground
   - EnemyShadow
-  - 
+  - HookableProps
   - 
   - 
   - 

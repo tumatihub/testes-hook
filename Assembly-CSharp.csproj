@@ -268,7 +268,9 @@
     <Compile Include="Assets\Scripts\Player\ShootingState.cs" />
     <Compile Include="Assets\Scripts\Player\State.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PullPlatform.cs" />
     <Compile Include="Assets\Scripts\WallPlatform.cs" />
+    <Compile Include="Assets\Scripts\WallPlatform1.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\2DGamekit\Utilities\Shaders\NormalMappedSprite-Animated.shader" />
     <None Include="Assets\2DGamekit\Utilities\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />

@@ -125,4 +125,20 @@ public class PlayerStateController : MonoBehaviour {
             isInShadow = false;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = null;
+        }
+    }
 }
