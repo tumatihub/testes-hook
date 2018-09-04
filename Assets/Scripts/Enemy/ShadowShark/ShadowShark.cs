@@ -67,12 +67,12 @@ public class ShadowShark : MonoBehaviour {
                     return;
                 }
                 anima.SetBool("Attacking", false);
-                if (player.position.x > transform.position.x + 2)
+                if (player.position.x > transform.position.x)
                 {
                     movingRight = true;
                     transform.eulerAngles = new Vector3(0, 0, 0);
                 }
-                if (player.position.x < transform.position.x - 2)
+                if (player.position.x < transform.position.x)
                 {
                     movingRight = false;
                     transform.eulerAngles = new Vector3(0, -180, 0);
