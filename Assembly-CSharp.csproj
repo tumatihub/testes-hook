@@ -250,6 +250,7 @@
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Aggro\AggroBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\Guardian\GuardianBehavior.cs" />
+    <Compile Include="Assets\Scripts\Enemy\RaptorPatrol\RaptorPatrolBehavior.cs" />
     <Compile Include="Assets\Scripts\Enemy\ShadowShark\ObstacleDetection.cs" />
     <Compile Include="Assets\Scripts\Enemy\ShadowShark\ShadowShark.cs" />
     <Compile Include="Assets\Scripts\Hook.cs" />

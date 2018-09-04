@@ -11,6 +11,7 @@ public class ShadowShark : MonoBehaviour {
     public GameObject aggroBox;
     private AggroBox aggroScript;
     private float height;
+    private Animator anima;
    
     
    
@@ -18,6 +19,7 @@ public class ShadowShark : MonoBehaviour {
 	void Start () {
         aggroScript = aggroBox.GetComponent<AggroBox>();
         height = transform.position.y;
+        anima = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +36,7 @@ public class ShadowShark : MonoBehaviour {
                     state = States.FOLLOWING;
                     break;
                 }
+                anima.SetBool("Attacking", false);
                 //checa se tem algum objeto em frente ou abismo e acerta a direção. 
                 if (this.GetComponentInChildren<ObstacleDetection>().obstacle == true)
                 {
@@ -53,7 +56,7 @@ public class ShadowShark : MonoBehaviour {
                 break;
 
             case States.FOLLOWING:
-                if (player.position.x > transform.position.x - 0.5f && player.position.x < transform.position.x + 0.5f)
+                if (player.position.x > transform.position.x - 0.8f && player.position.x < transform.position.x + 0.8f)
                 {
                     state = States.ATTACKING;
                     return;
@@ -63,6 +66,7 @@ public class ShadowShark : MonoBehaviour {
                     state = States.PATROLLING;
                     return;
                 }
+                anima.SetBool("Attacking", false);
                 if (player.position.x > transform.position.x + 2)
                 {
                     movingRight = true;
@@ -77,19 +81,15 @@ public class ShadowShark : MonoBehaviour {
                 break;
 
             case States.ATTACKING:
-                if (transform.position.y < height + 2)
-                {
-                    GetComponent<Rigidbody2D>().velocity = Vector2.up * 2;
-                }
-                else
-                {
-                    transform.position = new Vector2(transform.position.x, height);
-                    state = States.PATROLLING;
-                }
+                anima.SetBool("Attacking", true);
                 break;
         }  
     }
-   
 
+    private void AttackEnd()
+    {
+        anima.SetBool("Attacking", false);
+        state = States.FOLLOWING;
+    }
 }
 
