@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour {
 
     public enum States { MOVING, SHOOTING };
@@ -35,13 +36,19 @@ public class PlayerController : MonoBehaviour {
     public float hookMaxDistance;
     private bool pushed = false;
     public bool hasFired = false;
+    public GameObject lifeController;
+    public LifeController life;
 
     // Use this for initialization
     void Start () {
 
         rb = GetComponent<Rigidbody2D>();
         hookLine = GetComponent<LineRenderer>();
-	}
+        lifeController = GameObject.Find("LifeController");
+        life = lifeController.GetComponent<LifeController>();
+        life.initialPosition = transform.position;
+        life.currentPosition = transform.position;
+    }
 
     void FixedUpdate()
     {
@@ -189,4 +196,27 @@ public class PlayerController : MonoBehaviour {
         
         Gizmos.DrawWireSphere(feetPos.position, checkRadius);
     }
+    public void Damaged(int damage)
+    {
+        life.OnDamage(damage);
+        transform.position = life.currentPosition;
+    }
+    public void OnCheckpoint(Vector2 checkpoint)
+    {
+        life.currentPosition = checkpoint;
+    }
+
+    public void Respawn()
+    {
+        if(life.health > 0)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+  
+    
 }
